@@ -10,5 +10,20 @@ generator client {
 
 datasource db {
   provider = "mongodb"
-  url      = env("DATABASE_URL")
+  url      = "mongodb+srv://ckotian117:chirag123@cluster0.5m7vyf2.mongodb.net/myDatabase?retryWrites=true&w=majority"
+}
+
+model Issue {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  status      status   @default(OPEN)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum status {
+  OPEN
+  CLOSED
+  IN_PROGRESS
 }
